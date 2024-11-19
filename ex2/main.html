@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>workspace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+  <div class="logo">
+    <a href="main.html">
+      <img src="img_1.png" width="60" height="60px" />
+    </a>
+  </div>
+  <div class="menu">
+      <ul>
+      <li><a href="#">Ссылка 1</a></li>
+      <li><a href="#">Ссылка 2</a></li>
+      <li><a href="#">Ссылка 3</a></li>
+          </ul>
+  </div>
+
+</header>
+    <div class="content">
+        <h1 id="fragment-page">EX 1</h1>
+        <div class="hyper">
+            <ul>
+    <li><a href="http://kubsu.ru">Абсолютная гиперссылка на КубГУ</a></li>
+    <li><a href="https://kubsu.ru">Абсолютная ссылка на КубГУ(https) </a></li>
+    <li><a href="https://kubsu.ru"><img src="image.jpg" width="250" height="270" alt="цветочек"></a></li>
+    <li><a href = "inside.html">Cокращенная ссылка на внутреннюю страницу</a></li>
+    <li><a href="main.html">Cкращенная ссылка на главную страницу</a> </li>
+    <li><a href="#fragment-page">Cсылка на фрагмент текущей страницы</a> </li>
+    <li><a href="index.html?p1=v1&?p2=v2&?p3=v3">Ссылка с тремя параметрами</a></li>
+    <li><a href="index.html?id=fragment-page">Cсылка с параметром id в URL</a></li>
+    <li><a href="current.html">Относительная ссылка на страницу в текущем каталоге</a></li>
+    <li><a href="about/about.html">Относительная ссылка на страницу в каталоге about</a></li>
+    <li><a href="upper/upper1.html">Ссылка на страницу в каталоге уровня выше текущей</a> </li>
+    <li><a href="upper1/upper2/upper3.html">Ссылка на страницу в каталоге двумя уровнями выше текущей</a></li>
+    <li><p> контекстная ссылка: <br>
+            <a href="https://www.kubsu.ru/ru/science/achivments">Достижения молодых ученых</a>
+        </p></li>
+    <li><a href="https://kubsu.ru/ru/node/42556#field-faculty-education-extra">ссылка на фрагмент страницы стороннего сайта</a></li>
+    <li>
+            <map name="picMap">
+                <area shape="rect" coords="205,40,286,90" href="https://kubsu.ru/ru/fktipm" alt="ФКТИПМ">
+                <area shape="circle" coords="134,116,47" href="http://kubsu.ru" alt="КубГУ">
+            </map>
+            <img usemap="#picMap" src="img.png" alt="ЧЕРНЫЙ ФОН">
+        </li>
+    <li><a href="">Ссылка с пустым href</a></li>
+        <li><a>Ссылка без href</a></li>
+        <li><a href="https://kubsu.ru" rel="nofollow">#запрещен переход поисковиками</a></li>
+        <li><a href="https://kubsu.ru" rel="noindex">#запрещенна индексация поисковикам</a></li>
+    <li>
+            <ol>
+                <li><a href="https://kubsu.ru" title="Факультет компьютерных технологий и прикладной математики">нумерованная ссылка с подписью title</a></li>
+                <li><a href="https://kubsu.ru/ru/fktipm/novosti-i-obyavleniya" title="Новости ФКТиПМ"> вторая нумерованная ссылка с подписью title </a></li>
+            </ol>
+        </li>
+    <li><a href="ftp://login:password@example.com/file.txt">ссылка на файл на сервере FTP с авторизацией</a></li>
+
+
+</ul>
+        </div>
+        <div class="forma">
+            <form action="form@example.com">
+        <label>ФИО: <input type="text"><br></label>
+        <label>Телефон: <input type="tel"><br></label>
+        <label>E-mail: <input type="email"><br></label>
+        <label>Дата рождения: <input type="date"><br></label>
+
+        <label>Пол:</label>
+        <label><input type="radio" name="gender">м</label>
+        <label><input type="radio" name="gender">ж<br></label>
+
+        <label>
+            Любимый язык программирования:
+            <select name="choose" id="choose">
+                <option value="">JavaScript</option>
+                <option value="">PHP</option>
+                <option value="">Python</option>
+                <option value="">Java</option>
+                <option value="">Pascal</option>
+                <option value="">С</option>
+                <option value="">С++</option>
+                <option value="">Haskel</option>
+                <option value="">Clojure</option>
+                <option value="">Prolog</option>
+                <option value="">Scala</option>
+            </select><br>
+        </label>
+
+        <label>
+            Биография:<br>
+            <textarea name="bio" id="bio"></textarea><br>
+
+        </label>
+
+        <label><input type="checkbox">С контрактом ознакомлен(-а)</label><br>
+        <input type="submit" value="Cохранить">
+    </form>
+        </div>
+
+
+    </div>
+
+    <footer class="footer">
+        <div class="my_name">
+            <p>Артюхов А.Д.</p>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>

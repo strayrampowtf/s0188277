@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+  font-family: Cambria;
+  font-size: 14px;
+  background-color: #white;
+  text-decoration: none;
+}
+
+a {
+  color: #black;
+}
+
+main {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/*  шапка1 */
+.header {
+  background-color: green;
+  color: #000000;
+  padding: 1% 0;
+}
+
+.header-content {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  align-items: left;
+  flex-wrap: wrap;
+}
+
+/* лого1 */
+.logo {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 5%;
+  border-radius: 50%;
+  background: url(logo.png);
+  background-size: auto 100px;
+  box-sizing: border-box;
+}
+
+.logo img {
+  height: 40px;
+  margin-left: 10px;
+  float: left;
+  margin: 0;
+  position: absolute;
+}
+
+/* git1 */
+.site-link {
+  width: 60%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.site-link a {
+  display: inline-flex;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 10%;
+  font-size: 200%;
+}
+
+.site-link a:hover {
+  color: black;
+}
+
+/* ссылки1 */
+.menu ul {
+  position: relative;
+  list-style-type: none;
+  flex-flow: row nowrap;
+}
+
+.menu li {
+  border-radius: 10%;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: auto;
+  height:auto;
+  background-color: green;
+  margin-left: 10%;
+
+}
+
+.menu a {
+  margin-left: 5px;
+  font-size: 20px;
+  color:#333;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: white;
+}
+
+/* таблица1 */
+.content {
+  width: 100%;
+}
+
+.data-table {
+  width:100%;
+  border-collapse:collapse;
+  border: solid 3px #333;
+}
+
+.data-table th,
+.data-table td {
+  padding: 2px;
+  text-align:center;
+  border: solid 1px #333;
+}
+
+.data-table th {
+  background-color: #333;
+  color: #fff;
+  grid-column: auto;
+  border: solid 1px #DAD7D7;
+  text-align: left;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* подвал1 */
+.footer {
+  width: 100%;
+  background-color: green;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ПК */
+@media (min-width: 768px) {
+  body {
+    width: 100%;
+    margin: 0;
+    font-family: Cambria;
+    background-color: #white;
+    text-decoration: none;
+  }
+
+  a {
+    color: #white;
+  }
+
+  main {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .content {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /*  шапка2 */
+  .header {
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    padding: 20px 0;
+  }
+
+  .header-content {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  /* лого2 */
+  .logo {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: url(logo.png);
+    background-size: auto 120px;
+  }
+
+  .logo img {
+    height: 40px;
+    float: left;
+    margin: 0;
+    position: absolute;
+  }
+
+  /* git2 */
+  .site-link {
+    width: 20%;
+  }
+
+  .site-link a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    width: 25%;
+  }
+
+  .site-link a:hover {
+    color: black;
+  }
+
+  /* ссылки2 */
+  .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .menu li {
+    margin-left: 20px;
+  }
+
+  .menu a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    color: black;
+  }
+
+  /* таблица2 */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: solid 3px #333;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px;
+    text-align: left;
+    border: solid 1px #333;
+  }
+
+  .data-table th {
+    background-color: #333;
+    color: #fff;
+    grid-column: auto;
+    border: solid 1px #DAD7D7;
+    text-align: left;
+  }
+
+  .data-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* подвал2 */
+  .footer {
+    width: 100%;
+    background-color: #green;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}

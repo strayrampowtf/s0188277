@@ -20,18 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $allowedLanguages = ['Pascal', 'C', 'C++', 'JavaScript', 'PHP', 'Python', 'Java', 'Haskel', 'Clojure', 'Prolog', 'Scala', 'Go'];
 
     // Валидация ФИО
-if (empty($_POST['fio'])) {
-    $errors['fio'] = 'Заполните ФИО.';
-    setErrorCookie('fio', $errors['fio']);
-} elseif (!preg_match('/^[а-яА-ЯёЁa-zA-Z\s]+$/u', $_POST['fio'])) {
-    $errors['fio'] = 'Допустимы только буквы и пробелы';
-    setErrorCookie('fio', $errors['fio']);
-} elseif (strlen($_POST['fio']) > 150) {  // Заменено mb_strlen() на strlen()
-    $errors['fio'] = 'Не более 150 символов';
-    setErrorCookie('fio', $errors['fio']);
-} else {
-    setFormCookie('fio', $_POST['fio']);
-}
+    if (empty($_POST['fio'])) {
+        $errors['fio'] = 'Заполните ФИО.';
+        setErrorCookie('fio', $errors['fio']);
+    } elseif (!preg_match('/^[а-яА-ЯёЁa-zA-Z\s]+$/u', $_POST['fio'])) {
+        $errors['fio'] = 'Допустимы только буквы и пробелы';
+        setErrorCookie('fio', $errors['fio']);
+    } elseif (strlen($_POST['fio']) > 150) {
+        $errors['fio'] = 'Не более 150 символов';
+        setErrorCookie('fio', $errors['fio']);
+    }
+    setFormCookie('fio', $_POST['fio']); // <-- Сохраняем всегда
 
     // Валидация телефона
     if (empty($_POST['phone'])) {
@@ -40,9 +39,8 @@ if (empty($_POST['fio'])) {
     } elseif (!preg_match('/^\+?\d{10,15}$/', $_POST['phone'])) {
         $errors['phone'] = 'От 10 до 15 цифр, можно начинать с +';
         setErrorCookie('phone', $errors['phone']);
-    } else {
-        setFormCookie('phone', $_POST['phone']);
     }
+    setFormCookie('phone', $_POST['phone']); // <-- Сохраняем всегда
 
     // Валидация email
     if (empty($_POST['email'])) {
@@ -51,9 +49,8 @@ if (empty($_POST['fio'])) {
     } elseif (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $_POST['email'])) {
         $errors['email'] = 'Некорректный email';
         setErrorCookie('email', $errors['email']);
-    } else {
-        setFormCookie('email', $_POST['email']);
     }
+    setFormCookie('email', $_POST['email']); // <-- Сохраняем всегда
 
     // Валидация даты рождения
     if (empty($_POST['birthdate'])) {
@@ -63,14 +60,12 @@ if (empty($_POST['fio'])) {
         $birthdate = DateTime::createFromFormat('Y-m-d', $_POST['birthdate']);
         $today = new DateTime();
         $minAge = new DateTime('-150 years');
-
         if (!$birthdate || $birthdate > $today || $birthdate < $minAge) {
             $errors['birthdate'] = 'Некорректная дата';
             setErrorCookie('birthdate', $errors['birthdate']);
-        } else {
-            setFormCookie('birthdate', $_POST['birthdate']);
         }
     }
+    setFormCookie('birthdate', $_POST['birthdate']); // <-- Сохраняем всегда
 
     // Валидация пола
     if (empty($_POST['gender'])) {
@@ -79,11 +74,10 @@ if (empty($_POST['fio'])) {
     } elseif (!in_array($_POST['gender'], ['male', 'female'])) {
         $errors['gender'] = 'Выберите из списка';
         setErrorCookie('gender', $errors['gender']);
-    } else {
-        setFormCookie('gender', $_POST['gender']);
     }
+    setFormCookie('gender', $_POST['gender']); // <-- Сохраняем всегда
 
-    // Валидация языков
+    // Валидация языков программирования
     if (empty($_POST['languages'])) {
         $errors['languages'] = 'Выберите хотя бы один язык';
         setErrorCookie('languages', $errors['languages']);
@@ -95,7 +89,7 @@ if (empty($_POST['fio'])) {
                 break;
             }
         }
-        setFormCookie('languages', implode(',', $_POST['languages']));
+        setFormCookie('languages', implode(',', $_POST['languages'])); // <-- Сохраняем всегда
     }
 
     // Валидация биографии
@@ -105,18 +99,18 @@ if (empty($_POST['fio'])) {
     } elseif (strlen($_POST['bio']) > 5000) {
         $errors['bio'] = 'Не более 5000 символов';
         setErrorCookie('bio', $errors['bio']);
-    } else {
-        setFormCookie('bio', $_POST['bio']);
     }
+    setFormCookie('bio', $_POST['bio']); // <-- Сохраняем всегда
 
     // Валидация чекбокса
     if (empty($_POST['contract'])) {
         $errors['contract'] = 'Необходимо согласие';
         setErrorCookie('contract', $errors['contract']);
     } else {
-        setFormCookie('contract', '1');
+        setFormCookie('contract', '1'); // <-- Сохраняем всегда
     }
 
+    // Если есть ошибки — перенаправляем обратно
     if (!empty($errors)) {
         header('Location: index.php');
         exit();
@@ -126,17 +120,15 @@ if (empty($_POST['fio'])) {
     $user = 'u68775';
     $pass = '7631071';
     $dbname = 'u68775';
-
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $user, $pass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
-
         $db->beginTransaction();
 
         // Сохранение основной информации
         $stmt = $db->prepare("INSERT INTO applications (fio, phone, email, birthdate, gender, bio, contract_agreed)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+                              VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $_POST['fio'],
             $_POST['phone'],
@@ -146,19 +138,18 @@ if (empty($_POST['fio'])) {
             $_POST['bio'],
             isset($_POST['contract']) ? 1 : 0
         ]);
-
         $applicationId = $db->lastInsertId();
 
         // Сохранение языков
         $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id)
-                            SELECT ?, id FROM programming_languages WHERE name = ?");
+                              SELECT ?, id FROM programming_languages WHERE name = ?");
         foreach ($_POST['languages'] as $lang) {
             $stmt->execute([$applicationId, $lang]);
         }
 
         $db->commit();
 
-        // Очищаем cookies с данными формы
+        // Очищаем cookies с данными формы и ошибками
         foreach ($_COOKIE as $name => $value) {
             if (strpos($name, 'form_') === 0 || strpos($name, 'error_') === 0) {
                 setcookie($name, '', time() - 3600, '/');
@@ -177,6 +168,7 @@ if (empty($_POST['fio'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -187,15 +179,12 @@ if (empty($_POST['fio'])) {
 </head>
 <body>
     <h1>Анкета</h1>
-
     <?php if (isset($_GET['success'])): ?>
         <div class="success">Спасибо, результаты сохранены. ID: <?= htmlspecialchars($_GET['id']) ?></div>
     <?php endif; ?>
-
     <?php if (isset($_COOKIE['error_db'])): ?>
         <div class="error"><?= htmlspecialchars($_COOKIE['error_db']) ?></div>
     <?php endif; ?>
-
     <form action="index.php" method="POST">
         <!-- ФИО -->
         <div class="form-group">

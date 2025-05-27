@@ -1,5 +1,22 @@
 <?php
 session_start();
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="Admin Panel"');
+    header('HTTP/1.0 401 Unauthorized');
+    die("Требуется авторизация");
+}
+
+$username = $_SERVER['PHP_AUTH_USER'];
+$password = $_SERVER['PHP_AUTH_PW'];
+
+// Проверка из БД
+$stmt = $db->prepare("SELECT * FROM admin_users WHERE username = ?");
+$stmt->execute([$username]);
+$admin = $stmt->fetch();
+
+if (!$admin || !password_verify($password, $admin['password_hash'])) {
+    die("Неверные учетные данные");
+}
 
 // 1. Проверка авторизации
 if (!isset($_SESSION['admin_logged_in'])) {
